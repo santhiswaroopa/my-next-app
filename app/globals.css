@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbfaff;
+  --foreground: #080808;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* body {
+  background: red;
+} */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f1f5f9;
+}
+
+.main-container {
+  padding: 40px;
+}
+
+.sidebar-link {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #334155;
+}
+/* Sidebar default (desktop) */
+.sidebar {
+  width: 250px;
+  background-color: #1e293b;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Hide hamburger by default */
+.menu-btn {
+  display: none;
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== Layout ===== */
+.dashboard-wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.dashboard-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content main {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #1e293b;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 2000;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .menu-btn {
+    display: block;
+  }
+}
