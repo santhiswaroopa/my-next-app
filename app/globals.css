@@ -1,58 +1,25 @@
-@import "tailwindcss";
-
-:root {
-  --background: #fbfaff;
-  --foreground: #080808;
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-/* body {
-  background: red;
-} */
+/* ===== Reset ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
 
-body {
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
   background-color: #f1f5f9;
 }
 
-.main-container {
-  padding: 40px;
+/* ===== Layout Wrapper ===== */
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
 }
 
-.sidebar-link {
-  color: white;
-  text-decoration: none;
-  display: block;
-  padding: 8px 10px;
-  border-radius: 6px;
-  transition: 0.2s ease;
-}
-
-.sidebar-link:hover {
-  background-color: #334155;
-}
-/* Sidebar default (desktop) */
+/* ===== Sidebar ===== */
 .sidebar {
   width: 250px;
   background-color: #1e293b;
@@ -60,11 +27,73 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   transition: transform 0.3s ease;
 }
 
-/* Hide hamburger by default */
+/* Sidebar Links */
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 4px 0;
+}
+
+.sidebar a:hover {
+  color: #38bdf8;
+}
+
+.menu-title,
+.submenu-title {
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.submenu {
+  margin-left: 15px;
+}
+
+.inner-menu {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* ===== Content Area ===== */
+.dashboard-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* prevents text overflow issue */
+}
+
+/* ===== Header ===== */
+.dashboard-header {
+  padding: 15px;
+  background-color: #0f172a;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ===== Main Content ===== */
+.dashboard-content main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* ===== Footer ===== */
+.dashboard-footer {
+  background-color: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 12px;
+}
+
+/* ===== Hamburger ===== */
 .menu-btn {
   display: none;
   font-size: 22px;
@@ -74,24 +103,6 @@ body {
   cursor: pointer;
 }
 
-/* ===== Layout ===== */
-.dashboard-wrapper {
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.dashboard-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.dashboard-content main {
-  flex: 1;
-  overflow-y: auto;
-}
-
 /* ===== Mobile ===== */
 @media (max-width: 768px) {
 
@@ -99,11 +110,14 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px;
-    height: 100vh;
-    background-color: #1e293b;
+    width: 80%;
+    max-width: 280px;
+    height: 100dvh;
+    overflow-y: auto;
+
     transform: translateX(-100%);
     transition: transform 0.3s ease;
+
     z-index: 2000;
   }
 
@@ -115,3 +129,4 @@ body {
     display: block;
   }
 }
+
